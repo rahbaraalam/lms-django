@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="p-4 bg-white rounded shadow">
+    <h3 class="font-bold">आपके Learning Materials</h3>
+    <ul class="mt-3">
+      {% for m in materials %}
+        <li class="mb-2 p-2 border rounded">
+          <strong>{{ m.title }}</strong><br>
+          <small>{{ m.description }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

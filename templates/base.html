@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LMS Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-sky-50 text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="bg-sky-700 text-white px-6 py-3 flex justify-between items-center shadow">
+    <a href="/" class="font-bold text-lg">K-12 LMS</a>
+    <div class="space-x-4">
+      {% if user.is_authenticated %}
+        {% if user.role == 'admin' %}
+          <a href="{% url 'admin_dashboard' %}" class="hover:underline">Admin Dashboard</a>
+        {% elif user.role == 'teacher' %}
+          <a href="{% url 'teacher_dashboard' %}" class="hover:underline">Teacher Dashboard</a>
+        {% elif user.role == 'student' %}
+          <a href="{% url 'student_dashboard' %}" class="hover:underline">Student Dashboard</a>
+        {% endif %}
+        <a href="{% url 'logout' %}" class="bg-white text-sky-700 px-3 py-1 rounded hover:bg-sky-100">Logout</a>
+      {% else %}
+        <a href="{% url 'login' %}" class="hover:underline">Login</a>
+        <a href="{% url 'signup' %}" class="hover:underline">Signup</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="p-6">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

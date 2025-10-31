@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="p-4 bg-white rounded shadow">
+      <h3 class="font-bold">Users</h3>
+      <p class="mt-2">{{ users.count }} दर्ज यूज़र</p>
+    </div>
+    <div class="p-4 bg-white rounded shadow">
+      <h3 class="font-bold">Teachers</h3>
+      <p class="mt-2">{{ teachers }} शिक्षक</p>
+    </div>
+    <div class="p-4 bg-white rounded shadow">
+      <h3 class="font-bold">Students</h3>
+      <p class="mt-2">{{ students }} छात्र</p>
+    </div>
+  </div>
+
+  <div class="mt-6 bg-white p-4 rounded shadow">
+    <h4 class="font-semibold">All Users</h4>
+    <ul class="mt-2">
+      {% for u in users %}
+        <li>{{ u.username }} — {{ u.email }} — {{ u.role }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
